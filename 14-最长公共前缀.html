@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>14. 最长公共前缀</title>
+    </head>
+    <body>
+        <pre>
+        编写一个函数来查找字符串数组中的最长公共前缀。
+
+        如果不存在公共前缀，返回空字符串 ""。
+
+
+        输入：strs = ["flower","flow","flight"]
+        输出："fl"
+
+        输入：strs = ["dog","racecar","car"]
+        输出：""
+        解释：输入不存在公共前缀。
+    </pre
+        >
+
+        <script>
+            var longestCommonPrefix = function (strs) {
+                if (strs.lenth >= 1 && strs.lenth < 2) return strs[0].length;
+
+                let currVal = strs.splice(0, 1)[0];
+                let ret = "";
+
+                let index = 0,
+                    currLen = currVal.length;
+                while (index < currLen) {
+                    let bool = false;
+                    const currNum = currVal[index];
+
+                    inter: for (let i = 0; i < strs.length; i++) {
+                        if (currNum !== strs[i][index]) {
+                            bool = true;
+                            break inter;
+                        }
+                    }
+                    if (!bool) {
+                        ret = ret + currNum;
+                        index++;
+                    } else {
+                        index = currLen;
+                    }
+                }
+
+                return ret;
+            };
+
+            function longestCommonPrefix2(strs) {
+                return strs.reduce((prefix, curr) => {
+                    console.log(prefix, curr, 111);
+                    while (curr.indexOf(prefix) !== 0) {
+                        prefix = prefix.slice(0, prefix.length - 1);
+                    }
+                    return prefix;
+                });
+            }
+            function longestCommonPrefix3(strs) {
+                // 排序，然后比较最后两个
+                strs = strs.sort();
+                console.log(strs);
+                let start = strs[0]; // abcd
+                let end = strs[strs.length - 1]; // abcde
+                while (end.indexOf(start) !== 0) {
+                    start = start.slice(0, start.length - 1);
+                }
+
+                console.log(typeof start);
+                return start;
+            }
+
+            const strs = ["flower", "flow", "flight"];
+            const temp = ["dog", "racecar", "car"];
+            const render = longestCommonPrefix3(temp);
+
+            console.log(render);
+        </script>
+    </body>
+</html>
