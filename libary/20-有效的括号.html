@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>20.有效的括号</title>
+    </head>
+    <body>
+        <pre>
+        给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+        </pre>
+
+        <pre>
+        有效字符串需满足：
+
+        左括号必须用相同类型的右括号闭合。
+        左括号必须以正确的顺序闭合。
+
+        </pre>
+
+        <script>
+            var isValid = function (s) {
+                let ret = [];
+                for (let val of s) {
+                    s = s.replace("()", "").replace("{}", "").replace("[]", "");
+                }
+
+                return s.length === 0;
+            };
+
+            const isValid2 = function (s) {
+                const hashMap = {
+                    "}": "{",
+                    ")": "(",
+                    "]": "[",
+                };
+                let ret = [];
+                for (let i in s) {
+                    const val = s[i];
+                    ret.push(val);
+                    if (ret.length < 2) continue;
+
+                    const lastChar = ret[ret.length - 1];
+                    const preChar = ret[ret.length - 2];
+
+                    if (hashMap[lastChar] === preChar) {
+                        ret.splice(-2, 2);
+                    }
+                }
+
+                return ret.length === 0;
+            };
+
+            let s = "{([])}(";
+            const fn = isValid2(s);
+            console.log(fn);
+        </script>
+    </body>
+</html>

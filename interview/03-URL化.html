@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>03. URL化</title>
+    </head>
+    <body>
+        <pre>
+        URL化。编写一种方法，将字符串中的空格全部替换为%20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）
+
+ 
+
+        示例 1：
+
+        输入："Mr John Smith    ", 13
+        输出："Mr%20John%20Smith"
+        示例 2：
+
+        输入："               ", 5
+        输出："%20%20%20%20%20"
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/string-to-url-lcci
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre
+        >
+
+        <script>
+            var replaceSpaces = function (S, length) {
+                let ret = "";
+                let str = S.substring(0, length);
+                ret = str.replace(/\s/g, "%20");
+                return ret;
+            };
+
+            const replaceSpaces2 = function (S, length) {
+                return encodeURI(S.substring(0, length));
+            };
+
+            const str = "Mr John Smith    ";
+            const fn = replaceSpaces2(str, 13);
+            console.log(fn);
+        </script>
+    </body>
+</html>

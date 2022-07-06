@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>判定是否互为字符重排</title>
+    </head>
+    <body>
+        <pre>
+
+        给定两个字符串 s1 和 s2，请编写一个程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。
+
+        示例 1：
+
+        输入: s1 = "abc", s2 = "bca"
+        输出: true 
+        示例 2：
+
+        输入: s1 = "abc", s2 = "bad"
+        输出: false
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/check-permutation-lcci
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre
+        >
+
+        <script>
+            // abc bca
+            var CheckPermutation = function (s1, s2) {
+                if (s1.lenth !== s2.lenth) return false;
+
+                for (let key = 0; key < s1.length; key++) {
+                    const index = s2.indexOf(s1[key]);
+                    if (index >= 0) {
+                        s2 = s2.replace(s2[index], "");
+                    } else {
+                        return false;
+                    }
+                }
+
+                return !s2.length;
+            };
+            const s1 = "abc";
+            const s2 = "bca";
+            const fn = CheckPermutation(s1, s2);
+            console.log(fn);
+        </script>
+    </body>
+</html>

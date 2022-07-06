@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>01. 判定字符是否唯一</title>
+    </head>
+    <body>
+        <pre>
+        实现一个算法，确定一个字符串 s 的所有字符是否全都不同。
+
+        示例 1：
+
+        输入: s = "leetcode"
+        输出: false 
+        示例 2：
+
+        输入: s = "abc"
+        输出: true
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/is-unique-lcci
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre
+        >
+
+        <script>
+            var isUnique = function (astr) {
+                let map = {};
+                for (item of astr) {
+                    if (map[item]) return false;
+                    map[item] = item;
+                }
+
+                return true;
+            };
+
+            const isUnique2 = (astr) => {
+                const set = new Set(astr);
+                return set.size === astr.length;
+            };
+
+            const astr = "asdf";
+
+            const fn = isUnique2(astr);
+            console.log(fn, 222);
+        </script>
+    </body>
+</html>
