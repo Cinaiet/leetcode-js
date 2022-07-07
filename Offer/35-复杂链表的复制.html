@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>35. 复杂链表的复制</title>
+    </head>
+    <body>
+        <pre>
+        请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+
+
+        输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+        输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]
+
+
+        输入：head = [[3,null],[3,0],[3,null]]
+        输出：[[3,null],[3,0],[3,null]]
+
+        输入：head = []
+        输出：[]
+        解释：给定的链表为空（空指针），因此返回 null。
+
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/fu-za-lian-biao-de-fu-zhi-lcof
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre
+        >
+        <script>
+            /**
+             * 1. hashMap
+             *
+             * 2. copy节点，
+             *
+             * */
+
+            // 1 2 3 4 5 6 7
+            // 1 2 3 4 5 6 7
+            var copyRandomList = function (head, cacheNode = new Map()) {
+                if (head === null) return null;
+
+                if (!cacheNode.has(head)) {
+                    cacheNode.set(head, { val: head.val });
+
+                    cacheNode.assign(cacheNode.get(head), {
+                        next: copyRandomList(head.next, cacheNode),
+                        random: copyRandomList(head.random, cacheNode),
+                    });
+                }
+
+                return cacheNode.get(head);
+            };
+
+            const copyRandomList2 = function (head) {
+                if (head === null) return null;
+
+                for (let node = head; node !== null; node = node.next.next) {
+                    const newNode = new Node(node.val, node.next, null);
+                    node.next = newNode;
+                }
+
+                for (let node = head; node !== null; node = node.next.next) {
+                    const newNode = node.next;
+                    newNode.random =
+                        node.random !== null ? node.random.next : null;
+                }
+
+                const newHead = head.next; // 1 1 2 2 3 3
+                for (let node = head; node !== null; node = node.next) {
+                    const newNode = node.next;
+                    node.next = node.next.next;
+                    newNode.next =
+                        newNode.next !== null ? newNode.next.next : null;
+                }
+
+                return newHead;
+            };
+        </script>
+    </body>
+</html>
