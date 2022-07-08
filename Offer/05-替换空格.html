@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>05. 替换空格</title>
+    </head>
+    <body>
+        <pre>
+        请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+
+        输入：s = "We are happy."
+        输出："We%20are%20happy."
+
+    </pre
+        >
+        <script>
+            var replaceSpace = function (s) {
+                let ret = [];
+                for (let index in s) {
+                    ret[index] = s[index] === " " ? "%20" : s[index];
+                }
+                return ret.join("");
+            };
+            const str = '"We are happy.2"';
+            const fn = replaceSpace(str);
+            console.log(fn);
+        </script>
+    </body>
+</html>
