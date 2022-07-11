@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>50. 第一个只出现一次的字符</title>
+  </head>
+  <body>
+    <pre>
+        在字符串 s 中找出第一个只出现一次的字符。如果没有，返回一个单空格。 s 只包含小写字母。
+
+        示例 1:
+
+        输入：s = "abaccdeff"
+        输出：'b'
+        示例 2:
+
+        输入：s = "" 
+        输出：' '
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre>
+
+    <script>
+      var firstUniqChar = function (s) {
+        if (!s.length) return " ";
+        // let ret = new Map();
+        // for (let i = 0; i < s.length; i++) {
+        //   const item = s[i];
+        //   if (ret.has(item)) {
+        //     ret.delete(item);
+        //   } else {
+        //     ret.set(item, item);
+        //   }
+        // }
+
+        // const keys = [...ret.keys()];
+        // return keys.length ? keys[0] : " ";
+
+        let obj = {};
+
+        for (let i = 0; i < s.length; i++) {
+          const item = s[i];
+          if (obj[item]) {
+            obj[item] = obj[item] + 1;
+          } else {
+            obj[item] = 1;
+          }
+        }
+
+        for (let index in obj) {
+          if (obj[index] === 1) {
+            return index;
+          }
+        }
+
+        return " ";
+      };
+
+      const s = "";
+      const fn = firstUniqChar(s);
+      console.log(fn);
+    </script>
+  </body>
+</html>
