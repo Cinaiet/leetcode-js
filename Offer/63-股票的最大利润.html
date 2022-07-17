@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>63. 股票的最大利润</title>
+  </head>
+  <body>
+    <pre>
+        假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+
+        示例 1:
+
+        输入: [7,1,5,3,6,4]
+        输出: 5
+        解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+            注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+        示例 2:
+
+        输入: [7,6,4,3,1]
+        输出: 0
+        解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+         
+
+        限制：
+
+        0 <= 数组长度 <= 10^5
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/gu-piao-de-zui-da-li-run-lcof
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre>
+
+    <script>
+      var maxProfit = function (prices) {
+        if (prices.length <= 1) return 0;
+
+        let ret = 0,
+          min = prices[0];
+
+        for (let i = 1; i < prices.length; i++) {
+          const val = prices[i];
+          if (val <= min) {
+            min = val;
+          } else {
+            ret = Math.max(ret, val - min);
+          }
+        }
+
+        return ret;
+      };
+
+      //   const prices = [7, 1, 5, 3, 6, 4];
+      const prices = [7, 12, 20];
+
+      const fn = maxProfit(prices);
+      console.log(fn);
+    </script>
+  </body>
+</html>
