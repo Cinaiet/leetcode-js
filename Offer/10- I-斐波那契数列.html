@@ -57,8 +57,19 @@
         return r;
       };
 
+      const fib3 = (n) => {
+        if (n === 0) return 0;
+        let a1 = 0,
+          a2 = 1;
+        for (let i = 1; i < n; i++) {
+          [a1, a2] = [a2, (a1 + a2) % (1e9 + 7)];
+        }
+
+        return a2;
+      };
+
       const num = 5;
-      const fn = fib2(1000);
+      const fn = fib3(num);
       console.log(fn);
     </script>
   </body>

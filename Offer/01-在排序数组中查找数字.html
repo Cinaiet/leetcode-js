@@ -83,6 +83,42 @@
 
       const fn = search3(nums, 7);
       console.log(fn);
+
+      // -------分割线------
+      // 选择排序
+
+      function findSmallNum(arr) {
+        let minVal = arr[0];
+        let minIndex = 0;
+        // let [minIndex, minVal] = [0, arr[0]]
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] < minVal) {
+            minVal = arr[i];
+            minIndex = i;
+          }
+        }
+
+        return minIndex;
+      }
+
+      function selectedSort(arr) {
+        let ret = [],
+          transArr = arr;
+        for (let i = 0; i < arr.length; i++) {
+          let minIndex = findSmallNum(transArr);
+          let currVal = transArr.splice(minIndex, 1)[0];
+          ret.push(currVal);
+          // ret[i] = arr.pop(minIndex);
+        }
+
+        return ret;
+      }
+
+      const tempArr = [5, 3, 6, 2, 10];
+      const tempFn = selectedSort(tempArr);
+      console.info("source arr--->", tempArr);
+      console.info(tempFn, "111");
     </script>
   </body>
 </html>

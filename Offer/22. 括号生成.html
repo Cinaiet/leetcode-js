@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22. 括号生成</title>
+  </head>
+  <body>
+    <pre>
+        数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+
+ 
+
+        示例 1：
+
+        输入：n = 3
+        输出：["((()))","(()())","(())()","()(())","()()()"]
+        示例 2：
+
+        输入：n = 1
+        输出：["()"]
+         
+
+        提示：
+
+            1 <= n <= 8
+
+        来源：力扣（LeetCode）
+        链接：https://leetcode.cn/problems/generate-parentheses
+        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    </pre>
+    <script>
+      var generateParenthesis = function (n) {
+        let res = [];
+        function dfs(left, right, currStr) {
+          if (left === 0 && right === 0) {
+            res.push(currStr);
+            return;
+          }
+
+          if (left > 0) dfs(left - 1, right, currStr + "(");
+
+          if (right > left) dfs(left, right - 1, currStr + ")");
+        }
+
+        dfs(n, n, "");
+
+        return res;
+      };
+
+      const n = 4;
+      const fn = generateParenthesis(n);
+
+      console.log(fn);
+    </script>
+  </body>
+</html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>09.用两个栈实现队列</title>
-    </head>
-    <body>
-        <pre>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09.用两个栈实现队列</title>
+  </head>
+  <body>
+    <pre>
     用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
 
     
@@ -24,39 +24,92 @@
     ["CQueue","deleteHead","appendTail","appendTail","deleteHead","deleteHead"]
     [[],[],[5],[2],[],[]]
     输出：[null,-1,null,null,5,2]
-    </pre
-        >
+    </pre>
 
-        <script>
-            var CQueue = function () {
-                this.fStack = [];
-                this.endStack = [];
-            };
+    <script>
+      var CQueue = function () {
+        this.fStack = [];
+        this.endStack = [];
+      };
 
-            CQueue.prototype.appendTail = function (value) {
-                this.fStack.push(value);
-            };
+      CQueue.prototype.appendTail = function (value) {
+        this.fStack.push(value);
+      };
 
-            CQueue.prototype.deleteHead = function () {
-                if (!this.endStack.length) {
-                    if (!this.fStack.length) return -1;
-                    while (this.fStack.length) {
-                        this.endStack.push(this.fStack.pop());
-                    }
-                }
+      CQueue.prototype.deleteHead = function () {
+        if (!this.endStack.length) {
+          if (!this.fStack.length) return -1;
+          while (this.fStack.length) {
+            this.endStack.push(this.fStack.pop());
+          }
+        }
 
-                return this.endStack.pop();
-            };
+        return this.endStack.pop();
+      };
 
-            /**
-             * Your CQueue object will be instantiated and called as such:
-             * var obj = new CQueue()
-             * obj.appendTail(value)
-             * var param_2 = obj.deleteHead()
-             */
-            var obj = new CQueue();
-            obj.appendTail(2);
-            var param_2 = obj.deleteHead();
-        </script>
-    </body>
+      /**
+       * Your CQueue object will be instantiated and called as such:
+       * var obj = new CQueue()
+       * obj.appendTail(value)
+       * var param_2 = obj.deleteHead()
+       */
+      var obj = new CQueue();
+      obj.appendTail(2);
+      var param_2 = obj.deleteHead();
+
+      /**
+       * 分割线
+       * -------------以下内容与本题无关----------
+       * 递归编写一个sum函数
+       */
+
+      function sum(arr) {
+        if (arr.length === 0) return 0;
+        const num = arr.splice(0, 1)[0];
+        return num + sum(arr);
+      }
+
+      const sumList = [2, 4, 6];
+
+      //   console.log(sum(sumList));
+
+      function findMaxVal(arr) {
+        let max = arr[0];
+        function fac(index = 1) {
+          if (index >= arr.length) return max;
+          const val = arr[index];
+          if (val > max) {
+            max = val;
+          }
+          fac(index + 1);
+        }
+        fac(1);
+        return max;
+      }
+
+      //   console.log(findMaxVal(sumList, 0));
+
+      function quickSort(arr) {
+        if (arr.length < 2) return arr;
+        let leftList = [],
+          rightList = [];
+
+        const midIndex = Math.floor(arr.length / 2);
+        const midVal = arr.splice(midIndex, 1)[0];
+        for (let index = 0; index < arr.length; index++) {
+          if (midVal > arr[index]) {
+            leftList.push(arr[index]);
+          } else {
+            rightList.push(arr[index]);
+          }
+        }
+
+        return quickSort(leftList)
+          .concat([midVal])
+          .concat(quickSort(rightList));
+      }
+      const quickList = [3, 1, 9, 5, 8, 7, 9];
+      console.log(quickSort(quickList));
+    </script>
+  </body>
 </html>
