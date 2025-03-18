@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>2269. 找到一个数字的 K 美丽值</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * @param {number} num
+             * @param {number} k
+             * @return {number}
+             */
+            var divisorSubstrings = function (num, k) {
+                let count = 0;
+                let n = num.toString();
+                for (let i = 0; i < n.length - k + 1; i++) {
+                    let sub = n.substring(i, i + k);
+                    if (Number(sub) !== 0 && num % Number(sub) === 0) {
+                        count++;
+                    }
+                }
+                return count;
+            };
+        </script>
+    </body>
+</html>

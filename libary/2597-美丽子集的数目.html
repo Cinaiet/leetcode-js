@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>2597. 美丽子集的数目</title>
+    </head>
+    <body>
+        <script type="module">
+            function beautifulSubsets(nums, k) {
+                if (nums.length <= 1) return nums.length;
+
+                const used = new Map();
+                let result = -1;
+
+                const backtrack = (index) => {
+                    if (index === nums.length) {
+                        result++;
+                        return;
+                    }
+
+                    // 不选择当前数字
+                    backtrack(index + 1);
+
+                    // 检查是否可以选择当前数字
+                    const curr = nums[index];
+                    if (!used.get(curr - k) && !used.get(curr + k)) {
+                        // 可以选择当前数字
+                        used.set(curr, (used.get(curr) || 0) + 1);
+                        backtrack(index + 1);
+                        used.set(curr, used.get(curr) - 1);
+                        if (used.get(curr) === 0) {
+                            used.delete(curr);
+                        }
+                    }
+                };
+
+                backtrack(0);
+                return result;
+            }
+
+            console.log(beautifulSubsets([2, 4, 6], 2));
+        </script>
+    </body>
+</html>

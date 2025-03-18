@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>2012. 数组美丽值求和</title>
+    </head>
+    <body>
+        <script type="module">
+            /**
+             * @param {number[]} nums
+             * @return {number}
+             */
+            var sumOfBeatuies = function (nums) {
+                let ret = 0;
+
+                for (let i = 0; i < nums.length - 2; i++) {
+                    const a = nums[i];
+                    const b = nums[i + 1];
+                    const c = nums[i + 2];
+                    ret += Math.max(
+                        Math.min(a, b),
+                        Math.min(Math.max(a, b), c)
+                    );
+                }
+
+                return ret;
+            };
+        </script>
+    </body>
+</html>

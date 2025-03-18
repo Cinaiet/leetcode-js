@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>181. 字符串中的单词反转</title>
+    </head>
+    <body>
+        <script>
+            var reverseWords = function (s) {
+                let arr = s.trim().replace(/\s+/g, " ").split(" ");
+
+                let l = 0;
+                let r = arr.length - 1;
+
+                while (l < r) {
+                    let temp = arr[l];
+                    arr[l] = arr[r];
+                    arr[r] = temp;
+                    l++;
+                    r--;
+                }
+                return arr.join(" ");
+            };
+            console.log(reverseWords("the sky is blue"));
+
+            document.write(reverseWords("the sky is blue"));
+        </script>
+    </body>
+</html>
